@@ -16,13 +16,12 @@ ct
 ## Usage
 
 ```
-ct [options] [modifier]
+ct [options] [modifier] [step]
 ```
 
 ### Options
 
 ```bash
--step=number, -s       Specify the number of counting step.
 -mod=number, -m        Specify the number of modulo.
 ```
 
@@ -34,6 +33,19 @@ down                   Decrements the current stored number.
 ```
 
 `up` is default modifier.
+
+### Step
+
+Step is the number for couting. Default is `1`. Step requires a integer number.
+
+**Zero**
+
+Not occur anything. Displayed current stored number.
+
+**Negative number**
+
+`up` causes **Decrement**.
+`down` causes **Increment**.
 
 ## Install
 
