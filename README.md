@@ -1,0 +1,2 @@
+# ct
+simple counting tool
