@@ -16,6 +16,8 @@ var (
 	upStep   = setStep(up)
 	down     = kingpin.Command("down", "Count down the number.")
 	downStep = setStep(down)
+	reset    = kingpin.Command("reset", "Reset the stored number.")
+	resetNum = reset.Arg("number", "Reset number.").Default("0").Int()
 )
 
 func setStep(c *kingpin.CmdClause) *int {
@@ -76,6 +78,8 @@ func cmdMain() int {
 		num += *upStep
 	case "down":
 		num -= *downStep
+	case "reset":
+		num = *resetNum
 	}
 
 	if *mod > 0 {
