@@ -5,7 +5,8 @@ ct
 
 ## Description
 
-`ct` counts up or counts down a number and displays it. The result is saved in a file for next time.
+`ct` counts up or counts down a number and displays it.   
+The result is saved in a file for next time.
 
 ## Demo
 
@@ -16,27 +17,29 @@ ct
 ## Usage
 
 ```
-ct [options] [modifier] [step]
+ct [options] [modifier] [number]
 ```
 
 ### Options
 
 ```bash
--mod=number, -m        Specify the number of modulo.
+-mod=number, -m    Specify the number of modulo.
 ```
 
-### Modifier
+### Modifier and Number
 
 ```bash
-up                     Increments the current stored number. Default modifier.
-down                   Decrements the current stored number.
+up                 Increments the current stored number. Default modifier.
+down               Decrements the current stored number.
+reset              Reset the number.
 ```
 
 `up` is default modifier.
+`1` is default number.
 
-### Step
+#### Up/Down
 
-Step is the number for couting. Default is `1`. Step requires a integer number.
+Number requires a integer number.
 
 **Zero**
 
@@ -47,9 +50,13 @@ Not occur anything. Displayed current stored number.
 `up` causes **Decrement**.
 `down` causes **Increment**.
 
+#### Reset
+
+Reset stored number to specific number.
+
 ## Install
 
-```
+```bash
 $ go get github.com/kawaken/ct
 ```
 
