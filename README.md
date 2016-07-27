@@ -23,8 +23,11 @@ ct [options] [modifier] [number]
 ### Options
 
 ```bash
--mod=number, -m    Specify the number of modulo.
+--mod=number, -m    Specify the number of modulo.
+--file=path, -f     Specify the file to save number.
 ```
+
+`--file`: Default file is `$HOME/.config/ct/count`.
 
 ### Modifier and Number
 
