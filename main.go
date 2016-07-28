@@ -11,13 +11,14 @@ import (
 const defaultCountFile = ".config/ct/count"
 
 var (
-	mod      = kingpin.Flag("mod", "Number of modulo.").Short('m').Default("0").Int()
-	up       = kingpin.Command("up", "Count up the number.")
-	upStep   = setStep(up)
-	down     = kingpin.Command("down", "Count down the number.")
-	downStep = setStep(down)
-	reset    = kingpin.Command("reset", "Reset the stored number.")
-	resetNum = reset.Arg("number", "Reset number.").Default("0").Int()
+	mod           = kingpin.Flag("mod", "Number of modulo.").Short('m').Default("0").Int()
+	countFilePath = kingpin.Flag("file", "File to save number.").Short('f').String()
+	up            = kingpin.Command("up", "Count up the number.")
+	upStep        = setStep(up)
+	down          = kingpin.Command("down", "Count down the number.")
+	downStep      = setStep(down)
+	reset         = kingpin.Command("reset", "Reset the stored number.")
+	resetNum      = reset.Arg("number", "Reset number.").Default("0").Int()
 )
 
 func setStep(c *kingpin.CmdClause) *int {
@@ -53,11 +54,14 @@ func errorf(format string, args ...interface{}) {
 func cmdMain() int {
 	cmd := kingpin.Parse()
 
-	countFilePath := filepath.Join(os.Getenv("HOME"), defaultCountFile)
+	path := filepath.Join(os.Getenv("HOME"), defaultCountFile)
+	if *countFilePath != "" {
+		path = *countFilePath
+	}
 
-	f, new, err := openCountFile(countFilePath)
+	f, new, err := openCountFile(path)
 	if err != nil {
-		errorf("error open file '%s': %s", countFilePath, err)
+		errorf("error open file '%s': %s", path, err)
 		return 1
 	}
 	defer f.Close()
@@ -68,7 +72,7 @@ func cmdMain() int {
 	} else {
 		_, err = fmt.Fscanf(f, "%d", &num)
 		if err != nil {
-			errorf("error read file '%s': %s", countFilePath, err)
+			errorf("error read file '%s': %s", path, err)
 			return 1
 		}
 	}
@@ -88,13 +92,13 @@ func cmdMain() int {
 
 	_, err = f.Seek(0, 0)
 	if err != nil {
-		errorf("error write file '%s': %s", countFilePath, err)
+		errorf("error write file '%s': %s", path, err)
 		return 1
 	}
 
 	_, err = fmt.Fprintf(f, "%d\n", num)
 	if err != nil {
-		errorf("error write file '%s': %s", countFilePath, err)
+		errorf("error write file '%s': %s", path, err)
 		return 1
 	}
 
