@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"path/filepath"
 
@@ -9,6 +10,8 @@ import (
 )
 
 const defaultCountFile = ".config/ct/count"
+
+var eLog = log.New(os.Stderr, "", 0)
 
 var (
 	mod           = kingpin.Flag("mod", "Number of modulo.").Short('m').Default("0").Int()
@@ -47,10 +50,6 @@ func openCountFile(path string) (*os.File, bool, error) {
 	return f, isNew, err
 }
 
-func errorf(format string, args ...interface{}) {
-	fmt.Fprintf(os.Stderr, format, args...)
-}
-
 func cmdMain() int {
 	cmd := kingpin.Parse()
 
@@ -61,7 +60,7 @@ func cmdMain() int {
 
 	f, new, err := openCountFile(path)
 	if err != nil {
-		errorf("error open file '%s': %s", path, err)
+		eLog.Printf("error open file '%s': %s", path, err)
 		return 1
 	}
 	defer f.Close()
@@ -72,7 +71,7 @@ func cmdMain() int {
 	} else {
 		_, err = fmt.Fscanf(f, "%d", &num)
 		if err != nil {
-			errorf("error read file '%s': %s", path, err)
+			eLog.Printf("error read file '%s': %s", path, err)
 			return 1
 		}
 	}
@@ -92,13 +91,13 @@ func cmdMain() int {
 
 	_, err = f.Seek(0, 0)
 	if err != nil {
-		errorf("error write file '%s': %s", path, err)
+		eLog.Printf("error write file '%s': %s", path, err)
 		return 1
 	}
 
 	_, err = fmt.Fprintf(f, "%d\n", num)
 	if err != nil {
-		errorf("error write file '%s': %s", path, err)
+		eLog.Printf("error write file '%s': %s", path, err)
 		return 1
 	}
 
