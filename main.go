@@ -67,7 +67,7 @@ func cmdMain() int {
 
 	var num int
 	if new {
-		num = 0
+		num = -1
 	} else {
 		_, err = fmt.Fscanf(f, "%d", &num)
 		if err != nil {

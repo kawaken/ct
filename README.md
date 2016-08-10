@@ -8,6 +8,8 @@ ct
 `ct` counts up or counts down a number and displays it.   
 The result is saved in a file for next time.
 
+`ct` is __zero based__.
+
 ## Demo
 
 ## Requirement
