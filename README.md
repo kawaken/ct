@@ -8,8 +8,6 @@ ct
 `ct` counts up or counts down a number and displays it.   
 The result is saved in a file for next time.
 
-`ct` is __zero based__.
-
 ## Demo
 
 ## Requirement
@@ -25,7 +23,7 @@ ct [options] [modifier] [number]
 ### Options
 
 ```bash
---mod=number, -m    Specify the number of modulo.
+--rotate=number, -r    Specify the number to rotate.
 --file=path, -f     Specify the file to save number.
 ```
 

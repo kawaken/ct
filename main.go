@@ -14,7 +14,7 @@ const defaultCountFile = ".config/ct/count"
 var eLog = log.New(os.Stderr, "", 0)
 
 var (
-	mod           = kingpin.Flag("mod", "Number of modulo.").Short('m').Default("0").Int()
+	rotate        = kingpin.Flag("rotate", "Number of rotation.").Short('r').Default("0").Int()
 	countFilePath = kingpin.Flag("file", "File to save number.").Short('f').String()
 	up            = kingpin.Command("up", "Count up the number.")
 	upStep        = setStep(up)
@@ -67,7 +67,7 @@ func cmdMain() int {
 
 	var num int
 	if new {
-		num = -1
+		num = 0
 	} else {
 		_, err = fmt.Fscanf(f, "%d", &num)
 		if err != nil {
@@ -85,8 +85,8 @@ func cmdMain() int {
 		num = *resetNum
 	}
 
-	if *mod > 0 {
-		num %= *mod
+	if *rotate > 0 && num > *rotate {
+		num = 1
 	}
 
 	_, err = f.Seek(0, 0)
