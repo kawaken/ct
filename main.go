@@ -14,12 +14,10 @@ const defaultCountFile = ".config/ct/count"
 var eLog = log.New(os.Stderr, "", 0)
 
 var (
-	rotate        = kingpin.Flag("rotate", "Number of rotation.").Short('r').Default("0").Int()
+	rotate        = kingpin.Flag("rotate", "Number of rotation.").Short('r').Int()
 	countFilePath = kingpin.Flag("file", "File to save number.").Short('f').String()
-	up            = kingpin.Command("up", "Count up the number.")
+	up            = kingpin.Command("up", "Count up the number.").Default()
 	upStep        = setStep(up)
-	down          = kingpin.Command("down", "Count down the number.")
-	downStep      = setStep(down)
 	reset         = kingpin.Command("reset", "Reset the stored number.")
 	resetNum      = reset.Arg("number", "Reset number.").Default("0").Int()
 )
@@ -79,8 +77,6 @@ func cmdMain() int {
 	switch cmd {
 	case "up":
 		num += *upStep
-	case "down":
-		num -= *downStep
 	case "reset":
 		num = *resetNum
 	}
