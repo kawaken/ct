@@ -10,11 +10,21 @@ The result is saved in a file for next time.
 
 ## Demo
 
+**Counting**
 
+![counting](https://kawaken.github.io/ct/ct.gif)
+
+**Rotation**
+
+![rotation](https://kawaken.github.io/ct/ctr.gif)
+
+**Separate File**
+
+![separate](https://kawaken.github.io/ct/ctf.gif)
 
 ## Requirement
 
-Nothing. Download a binary via release page.
+Nothing. Download a binary via release page (in preparation).
 
 ## Usage
 
@@ -63,7 +73,7 @@ Reset stored number to specific number.
 
 ## Install
 
-Download a binary via relase page.
+Download a binary via relase page (in preparation).
 
 Or `go get`.
 
