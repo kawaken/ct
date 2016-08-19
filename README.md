@@ -50,26 +50,16 @@ up       Increments the current stored number. Default modifier.
 reset    Reset the number.
 ```
 
-`up` is default modifier.
-
+* `up` is default modifier.
+* `reset` resets stored number to specific number.
+ 
 **Number:**
 
 Number requires a integer number.  
-`1` is default number.
 
-#### Up
-
-**Zero**
-
-Not occur anything. Displayed current stored number.
-
-**Negative number**
-
-`up` causes **Decrement**.
-
-#### Reset
-
-Reset stored number to specific number.
+* `1` is default number.
+* `0`: Not occur anything. Displayed current stored number.
+* `Negative number`: count down.
 
 ## Install
 
